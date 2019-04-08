@@ -3,6 +3,8 @@ require 'csv'
 module ActivityLogSeeder
   def self.import!(csv_file)
     File.foreach(csv_file) do |row|
+      next if row.starts_with?('object_id') # header row
+      # Inspired by https://stackoverflow.com/a/14534628
       row = row.gsub(/(?<!\\)\\"/, '""')
       data = CSV.parse(row).first
 

@@ -4,14 +4,15 @@ class ActivityLog < ApplicationRecord
   scope :ordered, -> { order(:timestamp) }
   scope :for_object, -> (object_id, object_type, timestamp = nil) {
     cond = where(object_id: object_id, object_type: object_type)
-    cond = cond.where('timestamp <= ?', timestamp.to_i) if timestamp
+    cond = cond.where('timestamp <= ?', timestamp.to_i) if timestamp.present?
     cond.ordered
   }
 
   before_save :compute_object_state
 
   def prev_state
-    @prev_state ||= ActivityLog.for_object(self.object_id, self.object_type).last.try!(:object_state)
+    @prev_state ||= ActivityLog.for_object(self.object_id, self.object_type).last
+    @prev_state.try!(:object_state)
   end
 
   private

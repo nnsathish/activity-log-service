@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'health_check', to: 'application#health_check'
+  scope :api, constraints: { format: 'json' } do
+    resources :activity_logs, only: %i(index) do
+      get :state, on: :collection
+      post :upload, on: :collection
+    end
+  end
 end
