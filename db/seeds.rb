@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+#
+
+require 'activity_log_seeder'
+
+ActivityLog.delete_all
+
+seed_file = File.new('db/seed_data.csv', 'r')
+ActivityLogSeeder.import!(seed_file)
