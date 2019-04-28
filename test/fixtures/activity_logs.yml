@@ -1,15 +1,36 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+order_1:
   object_id: 1
-  object_type: MyString
-  timestamp: 1
-  object_state: 
-  object_changes: 
+  object_type: Order
+  timestamp: 1484730554
+  object_state: { customer_name: 'Jack', customer_address: 'Trade St.', status: 'unpaid' }
+  object_changes: { customer_name: 'Jack', customer_address: 'Trade St.', status: 'unpaid' }
 
-two:
+order_2:
+  object_id: 2
+  object_type: Order
+  timestamp: 1484730623
+  object_state: { customer_name: 'Sam', customer_address: 'Gecko St.', status: 'unpaid' }
+  object_changes: { customer_name: 'Sam', customer_address: 'Gecko St.', status: 'unpaid' }
+
+product_1:
   object_id: 1
-  object_type: MyString
-  timestamp: 1
-  object_state: 
-  object_changes: 
+  object_type: Product
+  timestamp: 1484731172
+  object_state: { name: 'Laptop', price: 2100, stock_levels: 29 }
+  object_changes: { name: 'Laptop', price: 2100, stock_levels: 29 }
+
+invoice_1:
+  object_id: 1
+  object_type: Invoice
+  timestamp: 1484731920
+  object_state: { order_id: 2, product_ids: [1,5,3], status: 'unpaid', total: 2500 }
+  object_changes: { order_id: 2, product_ids: [1,5,3], status: 'unpaid', total: 2500 }
+
+invoice_1_latest:
+  object_id: 1
+  object_type: Invoice
+  timestamp: 1484732821
+  object_state: { order_id: 2, product_ids: [1,5,3], status: 'paid', total: 2500 }
+  object_changes: { status: 'paid' }
